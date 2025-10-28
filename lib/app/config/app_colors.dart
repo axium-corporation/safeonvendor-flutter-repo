@@ -1,0 +1,116 @@
+import "package:flutter/material.dart";
+
+class AppColor {
+  static Color pureWhite = Colors.white;
+  static Color lightGreen = const Color(0xffEAFFE5);
+  static Color laraTextColor = const Color(0xff495057);
+  static Color laraInputBorder = const Color(0xffCED4DA);
+
+  static Color bgGreen = const Color.fromARGB(255, 9, 228, 89);
+  static Color surfaceColor = const Color(0xffEFF3F8);
+  static Color tabviewHeaderBorderColor = const Color(0xffDEE2E6);
+  static Color yellow = const Color(0xffFFBA00);
+  static Color pink = const Color(0xffEA2B61);
+  static Color blue = const Color(0xff4291EC);
+  static Color textSecondaryColor = const Color(0xff6C757D);
+  static Color surfaceBorder = const Color(0xffD9D9D9);
+  static Color warningButtonHoverBorderColor = const Color(0xffD97706);
+  static Color selectedDateBackgroundColor = const Color(0xffEFF6FF);
+
+  static Color successMessageTextColor = const Color(0xff1EA97C);
+  static Color errorMessageTextColor = const Color(0xFFCC8925);
+  static Color surface900Color = const Color(0xFF212121);
+  static Color calenderOrangecolor = const Color(0xFFFBA86F);
+  static Color red = Colors.red;
+  static Color pureBlack = Colors.black;
+
+  // NEW
+  static Color lightBlue = const Color(0xFF69A2B5);
+  static Color buttonGrey = const Color(0xFF333333);
+  static Color textGrey = const Color(0xFF6C7376);
+  static Color bgGrey = const Color(0xFFF5F5F5);
+  static Color dividerGrey = const Color(0xFFD1D1D1);
+  static Color dividerGrey2 = const Color(0xFF3C3C43);
+  static Color whiteBackground = const Color(0xFFFAFAFA);
+  static Color thickBlackText = const Color(0xFF1A1A1A);
+  static Color textGrey2 = const Color(0xFF666666);
+
+  static const Color textBlack = Color(0xFF1A1A1A);
+  static const Color primary = Color(0xFF6366F1);
+  static const Color success = Color(0xFF22C55E);
+  static const Color warning = Color(0xFFF59E0B);
+  static const Color error = Color(0xFFFF6B6B);
+  static const Color borderGrey = Color(0xFFE1E1E1);
+  static const Color lightBlue2 = Color(0xFFE8EDEF);
+  static const Color sliderDotColor = Color(0xFFA6B3B9);
+
+  //Auth Colors
+  static const Color buttonColor = Color(0xFF6d9773);
+  static const Color colorOne = Color(0xFF0C3B2E);
+}
+
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    var hexxColor = hexColor.toUpperCase().replaceAll("#", "");
+
+    if (hexxColor.length == 6) {
+      hexxColor = "FF$hexxColor";
+    }
+
+    return int.parse(hexxColor, radix: 16);
+  }
+
+  HexColor(String hexColor) : super(_getColorFromHex(hexColor));
+}
+
+class AppGradients {
+  static const List<List<Color>> gradientColors = [
+    [Color(0xFFff9a9e), Color(0xFFfad0c4)],
+    [Color(0xFFa18cd1), Color(0xFFfbc2eb)],
+    [Color(0xFF84fab0), Color(0xFF8fd3f4)],
+    [Color(0xFFfccb90), Color(0xFFd57eeb)],
+  ];
+}
+
+class AppPalette {
+  static const Color deepOrange = Colors.deepOrange;
+  static const Color blue = Colors.blue;
+  static const Color green = Colors.green;
+  static const Color purple = Colors.purple;
+  static const Color teal = Colors.teal;
+  static const Color indigo = Colors.indigo;
+  static const Color cyan = Colors.cyan;
+  static const Color redAccent = Colors.redAccent;
+  static const Color orange = Colors.orange;
+  static const Color brown = Colors.brown;
+  static const Color deepPurpleAccent = Colors.deepPurpleAccent;
+  static const Color blueGrey = Colors.blueGrey;
+  static const Color greenAccent = Colors.greenAccent;
+  static const Color lightBlue = Colors.lightBlue;
+  static const Color amber = Colors.amber;
+  static const Color deepOrangeAccent = Colors.deepOrangeAccent;
+  static const Color blueAccent = Colors.blueAccent;
+  static const Color grey = Colors.grey;
+
+  // List of all palette colors for easy iteration
+  static const List<Color> allColors = [
+    deepOrange,
+    blue,
+    green,
+    purple,
+    teal,
+    indigo,
+    cyan,
+    redAccent,
+    orange,
+    brown,
+    deepPurpleAccent,
+    blueGrey,
+    greenAccent,
+    lightBlue,
+    amber,
+    deepOrangeAccent,
+    blueAccent,
+    grey,
+  ];
+}
