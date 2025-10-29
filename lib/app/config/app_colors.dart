@@ -47,6 +47,14 @@ class AppColor {
   //Auth Colors
   static const Color buttonColor = Color(0xFF6d9773);
   static const Color colorOne = Color(0xFF0C3B2E);
+
+  // Auth specific colors from Figma
+  static const Color authPrimary = Color(0xFF0071AF);
+  static const Color authPrimaryAlt = Color(0xFF0071A4);
+  static const Color gray50 = Color(0xFFF9FAFB);
+  static const Color gray300 = Color(0xFFD2D5DA);
+  static const Color gray400 = Color(0xFF9CA3AF);
+  static const Color gray500 = Color(0xFF6D7280);
 }
 
 class HexColor extends Color {

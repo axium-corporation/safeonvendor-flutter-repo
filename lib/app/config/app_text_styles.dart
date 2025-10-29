@@ -347,4 +347,108 @@ class AppTextStyles {
       fontFamily: "poppins",
     );
   }
+
+  // Inter font family styles
+  static TextStyle kInterTextStyle26with600(Color color) {
+    return TextStyle(
+      fontSize: 26,
+      fontWeight: FontWeight.w600,
+      color: color,
+      fontFamily: "Inter",
+    );
+  }
+
+  static TextStyle kInterTextStyle16with400(Color color) {
+    return TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      color: color,
+      fontFamily: "Inter",
+      letterSpacing: -0.32,
+    );
+  }
+
+  static TextStyle kInterTextStyle16with600(Color color) {
+    return TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: color,
+      fontFamily: "Inter",
+      letterSpacing: -0.32,
+    );
+  }
+
+  static TextStyle kInterTextStyle15with600(Color color) {
+    return TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w600,
+      color: color,
+      fontFamily: "Inter",
+    );
+  }
+
+  static TextStyle kInterTextStyle14with400(Color color) {
+    return TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: color,
+      fontFamily: "Inter",
+    );
+  }
+
+  static TextStyle kInterTextStyle15with500(Color color) {
+    return TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
+      color: color,
+      fontFamily: "Inter",
+    );
+  }
+
+  static TextStyle kInterTextStyle12with400(Color color) {
+    return TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      color: color,
+      fontFamily: "Inter",
+    );
+  }
+
+  // Poppins styles
+  static TextStyle kPoppinsTextStyle16with600(Color color) {
+    return TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: color,
+      fontFamily: "Poppins",
+    );
+  }
+
+  static TextStyle kPoppinsTextStyle15with500(Color color) {
+    return TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
+      color: color,
+      fontFamily: "Poppins",
+    );
+  }
+
+  // Roboto Flex styles
+  static TextStyle kRobotoFlexTextStyle12with600(Color color) {
+    return TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w600,
+      color: color,
+      fontFamily: "RobotoFlex",
+    );
+  }
+
+  static TextStyle kRobotoFlexTextStyle15with600(Color color) {
+    return TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w600,
+      color: color,
+      fontFamily: "RobotoFlex",
+    );
+  }
 }
