@@ -8,7 +8,7 @@ import "package:safeonvendor_flutter_repo/presentation/pages.dart";
 
 class SplashController extends GetxController {
   void startTimer(BuildContext context) {
-    Future.delayed(const Duration(seconds: 20), () {
+    Future.delayed(const Duration(seconds: 3), () {
       _checkAccessToken();
     });
   }

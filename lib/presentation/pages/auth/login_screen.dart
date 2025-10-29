@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:safeonvendor_flutter_repo/app/config/app_colors.dart';
 import 'package:safeonvendor_flutter_repo/app/config/app_text_styles.dart';
@@ -12,72 +13,36 @@ class LoginScreen extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.authPrimaryAlt,
-      body: SafeArea(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppColor.authPrimaryAlt,
+              AppColor.authPrimaryAlt.withOpacity(0.8),
+            ],
+          ),
+        ),
         child: Column(
           children: [
-            // Status Bar
-            _buildStatusBar(),
-            // Logo
-            _buildLogo(),
-            // White Container
+            const SizedBox(height: 80),
+            // Animated Logo Section
+            _buildAnimatedLogoSection(),
+            // Animated White Container
             Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColor.pureWhite,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 21),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 60),
-                      // Login Title
-                      Text(
-                        'Login',
-                        style: AppTextStyles.kInterTextStyle26with600(
-                          AppColor.pureBlack,
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      // Buttons
-                      Obx(() => _buildContinueButton()),
-                      const SizedBox(height: 12),
-                      Obx(() => _buildCreateAccountButton()),
-                      const SizedBox(height: 20),
-                      // Divider with text
-                      _buildDivider(),
-                      const SizedBox(height: 20),
-                      // Email Input
-                      CustomTextFeild(
-                        label: '',
-                        controller: controller.loginEmailController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter email or mobile number';
-                          }
-                          return null;
-                        },
-                        keyboardType: TextInputType.emailAddress,
-                        maxLEngth: null,
-                        hint: 'Email or Mobile Number',
-                        fillColor: AppColor.gray50,
-                        borderColor: AppColor.gray300,
-                        borderRadius: 6,
-                        paddingReduces: true,
-                        autoValidate: false,
-                      ),
-                      const Spacer(),
-                      // Terms and Conditions
-                      _buildTermsText(),
-                      const SizedBox(height: 50),
-                    ],
-                  ),
-                ),
+              child: TweenAnimationBuilder<double>(
+                duration: const Duration(milliseconds: 800),
+                tween: Tween(begin: 1.0, end: 0.0),
+                builder: (context, value, child) {
+                  return Transform.translate(
+                    offset: Offset(0, 50 * value),
+                    child: Opacity(
+                      opacity: 1 - value,
+                      child: _buildLoginCard(),
+                    ),
+                  );
+                },
               ),
             ),
           ],
@@ -86,62 +51,159 @@ class LoginScreen extends GetView<AuthController> {
     );
   }
 
-  Widget _buildStatusBar() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            '9:41',
-            style: TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-              color: AppColor.pureWhite,
+  Widget _buildAnimatedLogoSection() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 1000),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Transform.scale(
+          scale: 0.8 + (0.2 * value),
+          child: Opacity(
+            opacity: value,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 40, bottom: 48),
+              child: Image.asset(
+                'assets/images/logo.png',
+                width: 192,
+                height: 62,
+              ),
             ),
           ),
-          Row(
-            children: [
-              Icon(
-                Icons.signal_cellular_alt,
-                size: 18,
-                color: AppColor.pureWhite,
+        );
+      },
+    );
+  }
+
+  Widget _buildLoginCard() {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: AppColor.pureWhite,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(35),
+          topRight: Radius.circular(35),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 20,
+            offset: const Offset(0, -5),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 21),
+              child: Column(
+                children: [
+                  const SizedBox(height: 60),
+                  // Animated Login Title
+                  TweenAnimationBuilder<double>(
+                    duration: const Duration(milliseconds: 600),
+                    tween: Tween(begin: 0.0, end: 1.0),
+                    builder: (context, value, child) {
+                      return Transform.translate(
+                        offset: Offset(0, 30 * (1 - value)),
+                        child: Opacity(
+                          opacity: value,
+                          child: Text(
+                            'Login',
+                            style: AppTextStyles.kInterTextStyle26with600(
+                              AppColor.pureBlack,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 30),
+                  // Animated Email Input
+                  _buildAnimatedEmailInput(),
+                  const SizedBox(height: 20),
+                  // Animated Continue Button
+                  _buildAnimatedContinueButton(),
+                  const SizedBox(height: 20),
+                  // Animated Divider
+                  _buildAnimatedDivider(),
+                  const SizedBox(height: 20),
+                  // Animated Create Account Button
+                  _buildAnimatedCreateAccountButton(),
+                  const SizedBox(height: 40),
+                  // Animated Terms
+                  _buildAnimatedTermsText(),
+                  const SizedBox(height: 50),
+                ],
               ),
-              const SizedBox(width: 3),
-              Icon(Icons.wifi, size: 15, color: AppColor.pureWhite),
-              const SizedBox(width: 5),
-              Icon(Icons.battery_full, size: 27, color: AppColor.pureWhite),
-            ],
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildLogo() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 58, bottom: 48),
-      child: Image.asset('assets/images/logo.png', width: 192, height: 62),
+  Widget _buildAnimatedContinueButton() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 700),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Transform.translate(
+          offset: Offset(0, 40 * (1 - value)),
+          child: Opacity(opacity: value, child: _buildContinueButton()),
+        );
+      },
+    );
+  }
+
+  Widget _buildAnimatedCreateAccountButton() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 900),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Transform.translate(
+          offset: Offset(0, 40 * (1 - value)),
+          child: Opacity(opacity: value, child: _buildCreateAccountButton()),
+        );
+      },
     );
   }
 
   Widget _buildContinueButton() {
     return Container(
-      width: 332,
-      height: 50,
+      width: double.infinity,
+      height: 56,
       decoration: BoxDecoration(
-        color: AppColor.authPrimary,
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: AppColor.gray300, width: 1),
+        gradient: LinearGradient(
+          colors: [AppColor.authPrimary, AppColor.authPrimary.withOpacity(0.8)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: AppColor.authPrimary.withOpacity(0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
-      child: TextButton(
-        onPressed: () {
-          // Handle continue
-        },
-        child: Text(
-          'Continue',
-          style: AppTextStyles.kPoppinsTextStyle16with600(AppColor.pureWhite),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            // Handle continue with haptic feedback
+            // HapticFeedback.lightImpact();
+          },
+          borderRadius: BorderRadius.circular(12),
+          child: Center(
+            child: Text(
+              'Continue',
+              style: AppTextStyles.kPoppinsTextStyle16with600(
+                AppColor.pureWhite,
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -149,49 +211,193 @@ class LoginScreen extends GetView<AuthController> {
 
   Widget _buildCreateAccountButton() {
     return Container(
-      width: 332,
-      height: 50,
+      width: double.infinity,
+      height: 56,
       decoration: BoxDecoration(
-        color: AppColor.authPrimary,
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: AppColor.gray300, width: 1),
-      ),
-      child: TextButton(
-        onPressed: () {
-          Get.toNamed(Routes.registerScreenRoute);
-        },
-        child: Text(
-          'Create your safeon account',
-          style: AppTextStyles.kInterTextStyle16with600(AppColor.pureWhite),
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: AppColor.authPrimary.withOpacity(0.3),
+          width: 1.5,
         ),
       ),
-    );
-  }
-
-  Widget _buildDivider() {
-    return Row(
-      children: [
-        Expanded(child: Container(height: 1, color: const Color(0xFF72CBF4))),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(
-            'New to Safeon?',
-            style: AppTextStyles.kInterTextStyle12with400(AppColor.pureBlack),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            Get.toNamed(Routes.registerScreenRoute);
+          },
+          borderRadius: BorderRadius.circular(12),
+          child: Center(
+            child: Text(
+              'Create your safeon account',
+              style: AppTextStyles.kInterTextStyle16with600(
+                AppColor.authPrimary,
+              ),
+            ),
           ),
         ),
-        Expanded(child: Container(height: 1, color: const Color(0xFF72CBF4))),
-      ],
+      ),
     );
   }
 
-  Widget _buildTermsText() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 34),
-      child: Text(
-        "By continuing an account you agree to Safeon's\nTerms and Conditions and Privacy Policy",
-        textAlign: TextAlign.center,
-        style: AppTextStyles.kRobotoFlexTextStyle12with600(AppColor.pureBlack),
-      ),
+  Widget _buildAnimatedDivider() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 1000),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Opacity(
+          opacity: value,
+          child: Row(
+            children: [
+              Expanded(
+                child: Container(
+                  height: 1,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.transparent,
+                        AppColor.authPrimary.withOpacity(0.3),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'New to Safeon?',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  height: 1,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.transparent,
+                        AppColor.authPrimary.withOpacity(0.3),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildAnimatedEmailInput() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 1100),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Transform.translate(
+          offset: Offset(0, 30 * (1 - value)),
+          child: Opacity(
+            opacity: value,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: CustomTextFeild(
+                label: '',
+                controller: controller.loginEmailController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter email or mobile number';
+                  }
+                  return null;
+                },
+                keyboardType: TextInputType.emailAddress,
+                maxLEngth: null,
+                hint: 'Email or Mobile Number',
+                fillColor: Colors.grey[50],
+                borderColor: Colors.grey[200]!,
+                borderRadius: 12,
+                paddingReduces: true,
+                autoValidate: false,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildAnimatedTermsText() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 1300),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Opacity(
+          opacity: value,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                  color: Colors.grey[600],
+                  height: 1.5,
+                ),
+                children: [
+                  const TextSpan(
+                    text: "By continuing an account you agree to ",
+                  ),
+                  TextSpan(
+                    text: "Safeon's Terms and Conditions",
+                    style: TextStyle(
+                      color: AppColor.authPrimary,
+                      fontWeight: FontWeight.w600,
+                      decoration: TextDecoration.underline,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        // Handle Terms and Conditions tap
+                        // Get.toNamed(Routes.termsAndConditionsRoute);
+                      },
+                  ),
+                  const TextSpan(text: " and "),
+                  TextSpan(
+                    text: "Privacy Policy",
+                    style: TextStyle(
+                      color: AppColor.authPrimary,
+                      fontWeight: FontWeight.w600,
+                      decoration: TextDecoration.underline,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        // Handle Privacy Policy tap
+                        // Get.toNamed(Routes.privacyPolicyRoute);
+                      },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

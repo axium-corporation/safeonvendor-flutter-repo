@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:safeonvendor_flutter_repo/app/config/app_colors.dart';
@@ -13,97 +14,36 @@ class RegisterScreen extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.authPrimaryAlt,
-      body: SafeArea(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppColor.authPrimaryAlt,
+              AppColor.authPrimaryAlt.withOpacity(0.8),
+            ],
+          ),
+        ),
         child: Column(
           children: [
-            // Status Bar
-            _buildStatusBar(),
-            // Logo
-            _buildLogo(),
-            // White Container
+            const SizedBox(height: 80),
+            // Animated Logo Section
+            _buildAnimatedLogoSection(),
+            // Animated White Container
             Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColor.pureWhite,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
-                ),
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 22),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 17),
-                      // Title
-                      Padding(
-                        padding: const EdgeInsets.only(left: 14),
-                        child: Text(
-                          'Create New Account',
-                          style: AppTextStyles.kInterTextStyle26with600(
-                            AppColor.pureBlack,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 60),
-                      // Name Input
-                      CustomTextFeild(
-                        label: '',
-                        controller: TextEditingController(),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your name';
-                          }
-                          return null;
-                        },
-                        keyboardType: TextInputType.name,
-                        maxLEngth: null,
-                        hint: 'Name',
-                        fillColor: AppColor.gray50,
-                        borderColor: AppColor.gray300,
-                        borderRadius: 6,
-                        paddingReduces: true,
-                        autoValidate: false,
-                      ),
-                      const SizedBox(height: 10),
-                      // Email Input
-                      CustomTextFeild(
-                        label: '',
-                        controller: TextEditingController(),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your email';
-                          }
-                          return null;
-                        },
-                        keyboardType: TextInputType.emailAddress,
-                        maxLEngth: null,
-                        hint: 'Email',
-                        fillColor: AppColor.gray50,
-                        borderColor: AppColor.gray300,
-                        borderRadius: 6,
-                        paddingReduces: true,
-                        autoValidate: false,
-                      ),
-                      const SizedBox(height: 10),
-                      // Mobile Number Input
-                      _buildMobileNumberField(),
-                      const SizedBox(height: 10),
-                      // Password Info Text
-                      _buildPasswordInfo(),
-                      const SizedBox(height: 40),
-                      // Verify Button
-                      _buildVerifyButton(),
-                      const SizedBox(height: 80),
-                      // Sign In Link
-                      _buildSignInLink(),
-                      const SizedBox(height: 50),
-                    ],
-                  ),
-                ),
+              child: TweenAnimationBuilder<double>(
+                duration: const Duration(milliseconds: 800),
+                tween: Tween(begin: 1.0, end: 0.0),
+                builder: (context, value, child) {
+                  return Transform.translate(
+                    offset: Offset(0, 50 * value),
+                    child: Opacity(
+                      opacity: 1 - value,
+                      child: _buildRegisterCard(),
+                    ),
+                  );
+                },
               ),
             ),
           ],
@@ -112,43 +52,217 @@ class RegisterScreen extends GetView<AuthController> {
     );
   }
 
-  Widget _buildStatusBar() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            '9:41',
-            style: TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-              color: AppColor.pureWhite,
+  Widget _buildAnimatedLogoSection() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 1000),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Transform.scale(
+          scale: 0.8 + (0.2 * value),
+          child: Opacity(
+            opacity: value,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 40, bottom: 48),
+              child: Image.asset(
+                'assets/images/logo.png',
+                width: 192,
+                height: 62,
+              ),
             ),
           ),
-          Row(
-            children: [
-              Icon(
-                Icons.signal_cellular_alt,
-                size: 18,
-                color: AppColor.pureWhite,
+        );
+      },
+    );
+  }
+
+  Widget _buildRegisterCard() {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: AppColor.pureWhite,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(35),
+          topRight: Radius.circular(35),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 20,
+            offset: const Offset(0, -5),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 21),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 60),
+                  // Animated Title
+                  TweenAnimationBuilder<double>(
+                    duration: const Duration(milliseconds: 600),
+                    tween: Tween(begin: 0.0, end: 1.0),
+                    builder: (context, value, child) {
+                      return Transform.translate(
+                        offset: Offset(0, 30 * (1 - value)),
+                        child: Opacity(
+                          opacity: value,
+                          child: Text(
+                            'Create New Account',
+                            style: AppTextStyles.kInterTextStyle26with600(
+                              AppColor.pureBlack,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 30),
+                  // Animated Name Input
+                  _buildAnimatedNameInput(),
+                  const SizedBox(height: 16),
+                  // Animated Email Input
+                  _buildAnimatedEmailInput(),
+                  const SizedBox(height: 16),
+                  // Animated Mobile Number Input
+                  _buildAnimatedMobileNumberField(),
+                  const SizedBox(height: 16),
+                  // Animated Password Info Text
+                  _buildAnimatedPasswordInfo(),
+                  const SizedBox(height: 30),
+                  // Animated Verify Button
+                  _buildAnimatedVerifyButton(),
+                  const SizedBox(height: 40),
+                  // Animated Sign In Link
+                  _buildAnimatedSignInLink(),
+                  const SizedBox(height: 50),
+                ],
               ),
-              const SizedBox(width: 3),
-              Icon(Icons.wifi, size: 15, color: AppColor.pureWhite),
-              const SizedBox(width: 5),
-              Icon(Icons.battery_full, size: 27, color: AppColor.pureWhite),
-            ],
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildLogo() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 58, bottom: 48),
-      child: Image.asset('assets/images/logo.png', width: 192, height: 62),
+  Widget _buildAnimatedNameInput() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 700),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Transform.translate(
+          offset: Offset(0, 30 * (1 - value)),
+          child: Opacity(
+            opacity: value,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: CustomTextFeild(
+                label: '',
+                controller: TextEditingController(),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your name';
+                  }
+                  return null;
+                },
+                keyboardType: TextInputType.name,
+                maxLEngth: null,
+                hint: 'Name',
+                fillColor: Colors.grey[50],
+                borderColor: Colors.grey[200]!,
+                borderRadius: 12,
+                paddingReduces: true,
+                autoValidate: false,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildAnimatedEmailInput() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 800),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Transform.translate(
+          offset: Offset(0, 30 * (1 - value)),
+          child: Opacity(
+            opacity: value,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: CustomTextFeild(
+                label: '',
+                controller: TextEditingController(),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  return null;
+                },
+                keyboardType: TextInputType.emailAddress,
+                maxLEngth: null,
+                hint: 'Email',
+                fillColor: Colors.grey[50],
+                borderColor: Colors.grey[200]!,
+                borderRadius: 12,
+                paddingReduces: true,
+                autoValidate: false,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildAnimatedMobileNumberField() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 900),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Transform.translate(
+          offset: Offset(0, 30 * (1 - value)),
+          child: Opacity(
+            opacity: value,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: _buildMobileNumberField(),
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -161,10 +275,10 @@ class RegisterScreen extends GetView<AuthController> {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
           decoration: BoxDecoration(
             color: AppColor.pureWhite,
-            border: Border.all(color: AppColor.gray300, width: 1),
+            border: Border.all(color: Colors.grey[200]!, width: 1),
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(6),
-              bottomLeft: Radius.circular(6),
+              topLeft: Radius.circular(12),
+              bottomLeft: Radius.circular(12),
             ),
           ),
           child: Row(
@@ -185,11 +299,11 @@ class RegisterScreen extends GetView<AuthController> {
             height: 52,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 13),
             decoration: BoxDecoration(
-              color: AppColor.gray50,
-              border: Border.all(color: AppColor.gray300, width: 1),
+              color: Colors.grey[50],
+              border: Border.all(color: Colors.grey[200]!, width: 1),
               borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(6),
-                bottomRight: Radius.circular(6),
+                topRight: Radius.circular(12),
+                bottomRight: Radius.circular(12),
               ),
             ),
             child: TextField(
@@ -209,57 +323,132 @@ class RegisterScreen extends GetView<AuthController> {
     );
   }
 
-  Widget _buildPasswordInfo() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Password must be at least 6 characters',
-          style: AppTextStyles.kInterTextStyle14with400(AppColor.pureBlack),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          'To validate your number and email address, we will send you a text message with an otp message. Data rates may apply.',
-          style: AppTextStyles.kInterTextStyle14with400(AppColor.pureBlack),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildVerifyButton() {
-    return Container(
-      width: 332,
-      height: 50,
-      decoration: BoxDecoration(
-        color: AppColor.authPrimary,
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: AppColor.gray300, width: 1),
-      ),
-      child: TextButton(
-        onPressed: () {
-          Get.toNamed(Routes.otpScreenRoute);
-        },
-        child: Text(
-          'Verify mobile number',
-          style: AppTextStyles.kInterTextStyle16with600(AppColor.pureWhite),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSignInLink() {
-    return Center(
-      child: TextButton(
-        onPressed: () {
-          Get.toNamed(Routes.loginScreenRoute);
-        },
-        child: Text(
-          'Already have an account? sign in',
-          style: AppTextStyles.kRobotoFlexTextStyle15with600(
-            AppColor.pureBlack,
+  Widget _buildAnimatedPasswordInfo() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 1100),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Opacity(
+          opacity: value,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Password must be at least 6 characters',
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14,
+                  color: Colors.grey[600],
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'To validate your number and email address, we will send you a text message with an otp message. Data rates may apply.',
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14,
+                  color: Colors.grey[600],
+                ),
+              ),
+            ],
           ),
-        ),
-      ),
+        );
+      },
+    );
+  }
+
+  Widget _buildAnimatedVerifyButton() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 1200),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Transform.translate(
+          offset: Offset(0, 30 * (1 - value)),
+          child: Opacity(
+            opacity: value,
+            child: Container(
+              width: double.infinity,
+              height: 56,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    AppColor.authPrimary,
+                    AppColor.authPrimary.withOpacity(0.8),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColor.authPrimary.withOpacity(0.3),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () {
+                    Get.toNamed(Routes.otpScreenRoute);
+                  },
+                  borderRadius: BorderRadius.circular(12),
+                  child: Center(
+                    child: Text(
+                      'Verify mobile number',
+                      style: AppTextStyles.kInterTextStyle16with600(
+                        AppColor.pureWhite,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildAnimatedSignInLink() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 1300),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Opacity(
+          opacity: value,
+          child: Center(
+            child: RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 15,
+                  color: Colors.grey[600],
+                ),
+                children: [
+                  const TextSpan(text: 'Already have an account? '),
+                  TextSpan(
+                    text: 'sign in',
+                    style: TextStyle(
+                      color: AppColor.authPrimary,
+                      fontWeight: FontWeight.w600,
+                      decoration: TextDecoration.underline,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Get.toNamed(Routes.loginScreenRoute);
+                      },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

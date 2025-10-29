@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:safeonvendor_flutter_repo/app/config/app_colors.dart';
 import 'package:safeonvendor_flutter_repo/app/config/app_text_styles.dart';
@@ -11,48 +12,33 @@ class OtpScreen extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.authPrimaryAlt,
-      body: SafeArea(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppColor.authPrimaryAlt,
+              AppColor.authPrimaryAlt.withOpacity(0.8),
+            ],
+          ),
+        ),
         child: Column(
           children: [
-            // Status Bar
-            _buildStatusBar(),
-            // Logo
-            _buildLogo(),
-            // White Container
+            const SizedBox(height: 80),
+            // Animated Logo Section
+            _buildAnimatedLogoSection(),
+            // Animated White Container
             Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColor.pureWhite,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
-                ),
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 36),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 88),
-                      // Title and Description
-                      _buildTitleSection(),
-                      const SizedBox(height: 79),
-                      // OTP Input Fields
-                      _buildOtpInputs(),
-                      const SizedBox(height: 27),
-                      // Resend OTP
-                      _buildResendOtp(),
-                      const SizedBox(height: 17),
-                      // Create Account Button
-                      _buildCreateAccountButton(),
-                      const SizedBox(height: 32),
-                      // Terms Text
-                      _buildTermsText(),
-                      const SizedBox(height: 50),
-                    ],
-                  ),
-                ),
+              child: TweenAnimationBuilder<double>(
+                duration: const Duration(milliseconds: 800),
+                tween: Tween(begin: 1.0, end: 0.0),
+                builder: (context, value, child) {
+                  return Transform.translate(
+                    offset: Offset(0, 50 * value),
+                    child: Opacity(opacity: 1 - value, child: _buildOtpCard()),
+                  );
+                },
               ),
             ),
           ],
@@ -61,108 +47,216 @@ class OtpScreen extends GetView<AuthController> {
     );
   }
 
-  Widget _buildStatusBar() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            '9:41',
-            style: TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-              color: AppColor.pureWhite,
+  Widget _buildAnimatedLogoSection() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 1000),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Transform.scale(
+          scale: 0.8 + (0.2 * value),
+          child: Opacity(
+            opacity: value,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 40, bottom: 48),
+              child: Image.asset(
+                'assets/images/logo.png',
+                width: 192,
+                height: 62,
+              ),
             ),
           ),
-          Row(
-            children: [
-              Icon(
-                Icons.signal_cellular_alt,
-                size: 18,
-                color: AppColor.pureWhite,
+        );
+      },
+    );
+  }
+
+  Widget _buildOtpCard() {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: AppColor.pureWhite,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(35),
+          topRight: Radius.circular(35),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 20,
+            offset: const Offset(0, -5),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                children: [
+                  const SizedBox(height: 60),
+                  // Animated Title Section
+                  _buildAnimatedTitleSection(),
+                  const SizedBox(height: 50),
+                  // Animated OTP Input Fields
+                  _buildAnimatedOtpInputs(),
+                  const SizedBox(height: 20),
+                  // Animated Resend OTP
+                  _buildAnimatedResendOtp(),
+                  const SizedBox(height: 20),
+                  // Animated Create Account Button
+                  _buildAnimatedCreateAccountButton(),
+                  const SizedBox(height: 40),
+                  // Animated Terms Text
+                  _buildAnimatedTermsText(),
+                  const SizedBox(height: 50),
+                ],
               ),
-              const SizedBox(width: 3),
-              Icon(Icons.wifi, size: 15, color: AppColor.pureWhite),
-              const SizedBox(width: 5),
-              Icon(Icons.battery_full, size: 27, color: AppColor.pureWhite),
-            ],
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildLogo() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 58, bottom: 48),
-      child: Image.asset('assets/images/logo.png', width: 192, height: 62),
-    );
-  }
-
-  Widget _buildTitleSection() {
+  Widget _buildAnimatedTitleSection() {
     return Column(
       children: [
-        Text(
-          'Verify Mobile Number',
-          style: AppTextStyles.kInterTextStyle26with600(AppColor.pureBlack),
+        // Animated Title
+        TweenAnimationBuilder<double>(
+          duration: const Duration(milliseconds: 600),
+          tween: Tween(begin: 0.0, end: 1.0),
+          builder: (context, value, child) {
+            return Transform.translate(
+              offset: Offset(0, 30 * (1 - value)),
+              child: Opacity(
+                opacity: value,
+                child: Text(
+                  'Verify Mobile Number',
+                  style: AppTextStyles.kInterTextStyle26with600(
+                    AppColor.pureBlack,
+                  ),
+                ),
+              ),
+            );
+          },
         ),
         const SizedBox(height: 15),
-        Text(
-          'A text with a one-time password has been\nsent to your cellphone number and \nemail address.',
-          textAlign: TextAlign.center,
-          style: AppTextStyles.kInterTextStyle14with400(AppColor.pureBlack),
-        ),
-        const SizedBox(height: 51),
-        TextButton(
-          onPressed: () {
-            // Handle change mobile number
+        // Animated Description
+        TweenAnimationBuilder<double>(
+          duration: const Duration(milliseconds: 700),
+          tween: Tween(begin: 0.0, end: 1.0),
+          builder: (context, value, child) {
+            return Opacity(
+              opacity: value,
+              child: Text(
+                'A text with a one-time password has been\nsent to your cellphone number and \nemail address.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14,
+                  color: Colors.grey[600],
+                ),
+              ),
+            );
           },
-          child: Text(
-            'Change mobile number',
-            style: AppTextStyles.kInterTextStyle15with600(
-              AppColor.authPrimaryAlt,
-            ),
-          ),
+        ),
+        const SizedBox(height: 30),
+        // Animated Change Mobile Number Link
+        TweenAnimationBuilder<double>(
+          duration: const Duration(milliseconds: 800),
+          tween: Tween(begin: 0.0, end: 1.0),
+          builder: (context, value, child) {
+            return Opacity(
+              opacity: value,
+              child: GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Text(
+                  'Change mobile number',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                    color: AppColor.authPrimary,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ],
     );
   }
 
-  Widget _buildOtpInputs() {
+  Widget _buildAnimatedOtpInputs() {
     return Column(
       children: [
-        Text(
-          'Enter Mobile OTP',
-          style: AppTextStyles.kPoppinsTextStyle15with500(AppColor.pureBlack),
-        ),
-        const SizedBox(height: 13),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(6, (index) {
-            return Container(
-              width: 44,
-              height: 50,
-              margin: EdgeInsets.only(right: index < 5 ? 16 : 0),
-              decoration: BoxDecoration(
-                color: AppColor.gray50,
-                border: Border.all(color: AppColor.gray300, width: 1),
-                borderRadius: BorderRadius.circular(6),
-              ),
-              child: TextField(
-                controller: controller.otpControllers[index],
-                textAlign: TextAlign.center,
-                keyboardType: TextInputType.number,
-                maxLength: 1,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  counterText: '',
-                ),
-                style: AppTextStyles.kInterTextStyle16with400(
+        // Animated OTP Label
+        TweenAnimationBuilder<double>(
+          duration: const Duration(milliseconds: 900),
+          tween: Tween(begin: 0.0, end: 1.0),
+          builder: (context, value, child) {
+            return Opacity(
+              opacity: value,
+              child: Text(
+                'Enter Mobile OTP',
+                style: AppTextStyles.kPoppinsTextStyle15with500(
                   AppColor.pureBlack,
                 ),
               ),
+            );
+          },
+        ),
+        const SizedBox(height: 20),
+        // Animated OTP Input Boxes
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(6, (index) {
+            return TweenAnimationBuilder<double>(
+              duration: Duration(milliseconds: 1000 + (index * 50)),
+              tween: Tween(begin: 0.0, end: 1.0),
+              builder: (context, value, child) {
+                return Transform.scale(
+                  scale: 0.8 + (0.2 * value),
+                  child: Opacity(
+                    opacity: value,
+                    child: Container(
+                      width: 48,
+                      height: 56,
+                      margin: EdgeInsets.only(right: index < 5 ? 12 : 0),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[50],
+                        border: Border.all(color: Colors.grey[200]!, width: 1),
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            blurRadius: 8,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: TextField(
+                        controller: controller.otpControllers[index],
+                        textAlign: TextAlign.center,
+                        keyboardType: TextInputType.number,
+                        maxLength: 1,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          counterText: '',
+                        ),
+                        style: AppTextStyles.kInterTextStyle16with400(
+                          AppColor.pureBlack,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
             );
           }),
         ),
@@ -170,49 +264,143 @@ class OtpScreen extends GetView<AuthController> {
     );
   }
 
-  Widget _buildResendOtp() {
-    return TextButton(
-      onPressed: () {
-        // Handle resend OTP
+  Widget _buildAnimatedResendOtp() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 1100),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Opacity(
+          opacity: value,
+          child: GestureDetector(
+            onTap: () {
+              // Handle resend OTP
+            },
+            child: Text(
+              'Resend OTP',
+              style: TextStyle(
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+                fontSize: 15,
+                color: AppColor.authPrimary,
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
+        );
       },
-      child: Text(
-        'Resend OTP',
-        style: AppTextStyles.kInterTextStyle15with500(AppColor.authPrimaryAlt),
-      ),
     );
   }
 
-  Widget _buildCreateAccountButton() {
-    return Container(
-      width: 332,
-      height: 50,
-      decoration: BoxDecoration(
-        color: AppColor.authPrimary,
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: AppColor.gray300, width: 1),
-      ),
-      child: TextButton(
-        onPressed: () {
-          // Handle OTP verification and navigate to home
-          // For now, navigate back to login
-          Get.offAllNamed(Routes.loginScreenRoute);
-        },
-        child: Text(
-          'Create your safeon account',
-          style: AppTextStyles.kInterTextStyle16with600(AppColor.pureWhite),
-        ),
-      ),
+  Widget _buildAnimatedCreateAccountButton() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 1200),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Transform.translate(
+          offset: Offset(0, 30 * (1 - value)),
+          child: Opacity(
+            opacity: value,
+            child: Container(
+              width: double.infinity,
+              height: 56,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    AppColor.authPrimary,
+                    AppColor.authPrimary.withOpacity(0.8),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColor.authPrimary.withOpacity(0.3),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () {
+                    // Handle OTP verification and navigate to home
+                    // For now, navigate back to login
+                    Get.offAllNamed(Routes.loginScreenRoute);
+                  },
+                  borderRadius: BorderRadius.circular(12),
+                  child: Center(
+                    child: Text(
+                      'Create your safeon account',
+                      style: AppTextStyles.kInterTextStyle16with600(
+                        AppColor.pureWhite,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 
-  Widget _buildTermsText() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 37),
-      child: Text(
-        "By creating an account you agree to Safeon's\nTerms and Conditions and Privacy Policy",
-        textAlign: TextAlign.center,
-        style: AppTextStyles.kRobotoFlexTextStyle12with600(AppColor.pureBlack),
-      ),
+  Widget _buildAnimatedTermsText() {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 1300),
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return Opacity(
+          opacity: value,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                  color: Colors.grey[600],
+                  height: 1.5,
+                ),
+                children: [
+                  const TextSpan(text: "By creating an account you agree to "),
+                  TextSpan(
+                    text: "Safeon's Terms and Conditions",
+                    style: TextStyle(
+                      color: AppColor.authPrimary,
+                      fontWeight: FontWeight.w600,
+                      decoration: TextDecoration.underline,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        // Handle Terms and Conditions tap
+                        // Get.toNamed(Routes.termsAndConditionsRoute);
+                      },
+                  ),
+                  const TextSpan(text: " and "),
+                  TextSpan(
+                    text: "Privacy Policy",
+                    style: TextStyle(
+                      color: AppColor.authPrimary,
+                      fontWeight: FontWeight.w600,
+                      decoration: TextDecoration.underline,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        // Handle Privacy Policy tap
+                        // Get.toNamed(Routes.privacyPolicyRoute);
+                      },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

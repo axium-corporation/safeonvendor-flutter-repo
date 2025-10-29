@@ -59,8 +59,9 @@ class OnboardingFooter extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.white.withOpacity(0.4),
-            blurRadius: 5,
-            offset: const Offset(0, 0),
+            blurRadius: 6,
+            spreadRadius: 0.5,
+            offset: const Offset(0, 1),
           ),
         ],
       ),
@@ -69,11 +70,13 @@ class OnboardingFooter extends StatelessWidget {
         child: InkWell(
           onTap: onContinue,
           borderRadius: BorderRadius.circular(40),
+          splashColor: Colors.white.withOpacity(0.2),
+          highlightColor: Colors.white.withOpacity(0.1),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
-            child: Row(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            child: const Row(
               mainAxisSize: MainAxisSize.min,
-              children: const [
+              children: [
                 Text(
                   'Continue',
                   style: TextStyle(
