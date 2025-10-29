@@ -1,83 +1,61 @@
 {
-
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "safeonvendor_flutter_repo",
-            "request": "launch",
-            "type": "dart",
-            "program": "lib/main_dev.dart",
-            "toolArgs": [
-                "--no-dds",
-                "--no-devtools"
-            ]
-        },
-        {
-            "name": "safeonvendor_flutter_repo (web html, no devtools)",
-            "request": "launch",
-            "type": "dart",
-            "program": "lib/main_dev.dart",
-            "deviceId": "chrome",
-            "toolArgs": [
-                "--no-dds",
-                "--no-devtools"
-            ]
-        },
-        {
-            "name": "safeonvendor_flutter_repo (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile",
-            "program": "lib/main_dev.dart",
-            // "toolArgs": [
-            //     "--dart-define",
-            //     "API_BASE_URL=http://63.178.125.141/api/v1/app",
-            //     "--dart-define",
-            //     "X_API_KEY=W4iLDFGGFYTQVJHfdbc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV",
-            //     "--dart-define",
-            //     "S3BUCKETURL=https://safeonvendor_flutter_repo-dev.s3.eu-central-1.amazonaws.com/"
-            // ]
-        },
-        {
-            "name": "safeonvendor_flutter_repo (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release",
-            "program": "lib/main_dev.dart",
-            // "toolArgs": [
-            //     "--dart-define",
-            //     "API_BASE_URL=http://63.178.125.141/api/v1/app",
-            //     "--dart-define",
-            //     "X_API_KEY=W4iLDFGGFYTQVJHfdbc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV",
-            //     "--dart-define",
-            //     "S3BUCKETURL=https://safeonvendor_flutter_repo-dev.s3.eu-central-1.amazonaws.com/"
-            // ]
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "SafeOn Vendor - iPhone 16 Pro",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_dev.dart",
+      "args": ["-d", "784B1A0C-6AB6-4214-A5A0-0B3016560B15"],
+      "deviceId": "784B1A0C-6AB6-4214-A5A0-0B3016560B15"
+    },
+    {
+      "name": "SafeOn Vendor - iPhone 16 Pro Max",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_dev.dart",
+      "args": ["-d", "1C43FCFA-2675-4A83-AB3A-15024192121A"],
+      "deviceId": "1C43FCFA-2675-4A83-AB3A-15024192121A"
+    },
+    {
+      "name": "SafeOn Vendor - Development iOS (main_dev.dart) - iPhone 16 Pro",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_dev.dart",
+      "args": ["-d", "784B1A0C-6AB6-4214-A5A0-0B3016560B15"],
+      "deviceId": "784B1A0C-6AB6-4214-A5A0-0B3016560B15"
+    },
+    {
+      "name": "SafeOn Vendor - Production iOS (main_prod.dart) - iPhone 16 Pro",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_prod.dart",
+      "args": ["-d", "784B1A0C-6AB6-4214-A5A0-0B3016560B15"],
+      "deviceId": "784B1A0C-6AB6-4214-A5A0-0B3016560B15"
+    },
+    {
+      "name": "SafeOn Vendor - Debug Mode - iPhone 16 Pro",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_dev.dart",
+      "args": ["--debug", "-d", "784B1A0C-6AB6-4214-A5A0-0B3016560B15"],
+      "deviceId": "784B1A0C-6AB6-4214-A5A0-0B3016560B15"
+    },
+    {
+      "name": "SafeOn Vendor - macOS",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_dev.dart",
+      "args": ["-d", "macos"],
+      "deviceId": "macos"
+    },
+    {
+      "name": "SafeOn Vendor - Chrome Web",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_dev.dart",
+      "args": ["-d", "chrome"],
+      "deviceId": "chrome"
+    }
+  ]
 }
-/*
-Command to build apk with dart-define parameters
-
-flutter build apk -t lib/main_dev.dart \
-  --dart-define=API_BASE_URL=YOUR_API_BASE_URL \
-  --dart-define=X_API_KEY=YOUR_X_API_KEY \
-  --dart-define=S3BUCKETURL=YOUR_S3_BUCKET_URL
-
-
-Command to build bundle with dart-define parameters
-flutter build appbundle -t lib/main_dev.dart \
-  --dart-define=API_BASE_URL=YOUR_API_BASE_URL \
-  --dart-define=X_API_KEY=YOUR_X_API_KEY \
-  --dart-define=S3BUCKETURL=YOUR_S3_BUCKET_URL
-
-
-
-For this project 
-
-flutter clean && flutter pub get
-flutter build ios -t lib/main_dev.dart \
-  --dart-define=API_BASE_URL=http://63.178.125.141/api/v1/app \
-  --dart-define=X_API_KEY=W4iLDFGGFYTQVJHfdbc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV \
-  --dart-define=S3BUCKETURL=https://safeonvendor_flutter_repo-dev.s3.eu-central-1.amazonaws.com/ \
-  --dart-define=GOOGLE_PLACES_API_KEY=null
-*/

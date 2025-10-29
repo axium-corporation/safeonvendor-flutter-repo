@@ -38,53 +38,6 @@ class OnboardingScreen2 extends StatelessWidget {
           SafeArea(
             child: Column(
               children: [
-                // Status Bar (9:41, signal, wifi, battery)
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        '9:41',
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          height: 1.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          // Mobile Signal
-                          SizedBox(
-                            width: 18,
-                            height: 10,
-                            child: Stack(
-                              children: [
-                                _buildSignalBar(0, 3, 4),
-                                _buildSignalBar(4, 3, 6),
-                                _buildSignalBar(8, 3, 8),
-                                _buildSignalBar(12, 3, 10),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(width: 3),
-                          // Wifi Icon
-                          Icon(Icons.wifi, size: 15, color: Colors.white),
-                          const SizedBox(width: 5),
-                          // Battery Icon
-                          Icon(
-                            Icons.battery_full,
-                            size: 27,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
                 const Spacer(),
                 // Title and Subtitle
                 Padding(
@@ -148,21 +101,6 @@ class OnboardingScreen2 extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildSignalBar(double left, double width, double height) {
-    return Positioned(
-      left: left,
-      bottom: 0,
-      child: Container(
-        width: width.toDouble(),
-        height: height.toDouble(),
-        decoration: BoxDecoration(
-          color: const Color(0xFFDADADA),
-          borderRadius: BorderRadius.circular(1),
-        ),
       ),
     );
   }

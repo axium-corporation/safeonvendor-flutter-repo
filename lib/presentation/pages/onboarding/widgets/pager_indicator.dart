@@ -22,7 +22,9 @@ class PagerIndicator extends StatelessWidget {
   }
 
   Widget _buildDot(bool isActive) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
       margin: const EdgeInsets.symmetric(horizontal: 4),
       width: isActive ? 10 : 6,
       height: isActive ? 10 : 6,
@@ -35,7 +37,8 @@ class PagerIndicator extends StatelessWidget {
             ? [
                 BoxShadow(
                   color: Colors.white.withOpacity(0.4),
-                  blurRadius: 5,
+                  blurRadius: 6,
+                  spreadRadius: 0.5,
                   offset: const Offset(0, 0),
                 ),
               ]
