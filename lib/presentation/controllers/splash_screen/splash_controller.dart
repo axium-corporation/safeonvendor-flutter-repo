@@ -14,7 +14,7 @@ class SplashController extends GetxController {
   }
 
   Future<void> _checkAccessToken() async {
-    Get.offNamed(Routes.loginScreenRoute);
+    Get.offAllNamed(Routes.onboardingPageRoute);
   }
 
   // final bool isOnboardingComplete =
