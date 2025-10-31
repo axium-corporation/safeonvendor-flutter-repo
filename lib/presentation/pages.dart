@@ -1,8 +1,12 @@
 import "package:get/get.dart";
 import "package:safeonvendor_flutter_repo/presentation/controllers/auth/auth_binding.dart";
+import "package:safeonvendor_flutter_repo/presentation/controllers/home/home_binding.dart";
 import "package:safeonvendor_flutter_repo/presentation/pages/auth/login_screen.dart";
 import "package:safeonvendor_flutter_repo/presentation/pages/auth/register_screen.dart";
 import "package:safeonvendor_flutter_repo/presentation/pages/auth/otp_screen.dart";
+import "package:safeonvendor_flutter_repo/presentation/pages/home/home_screen.dart";
+import "package:safeonvendor_flutter_repo/presentation/pages/main/main_binding.dart";
+import "package:safeonvendor_flutter_repo/presentation/pages/main/main_screen.dart";
 import "package:safeonvendor_flutter_repo/presentation/pages/onboarding/onboarding_page.dart";
 
 List<GetPage<dynamic>>? getPages = [
@@ -27,6 +31,16 @@ List<GetPage<dynamic>>? getPages = [
   ),
 
   /* --------------------------------- Home --------------------------------- */
+  GetPage(
+    name: Routes.mainScreenRoute,
+    page: () => const MainScreen(),
+    binding: MainBinding(),
+  ),
+  GetPage(
+    name: Routes.homeRoute,
+    page: () => const HomeScreen(),
+    binding: HomeBinding(),
+  ),
 ];
 
 class Routes {
@@ -40,4 +54,6 @@ class Routes {
 
   /* --------------------------------- Home --------------------------------- */
   static String splashRoute = "/";
+  static String mainScreenRoute = "/MainScreen";
+  static String homeRoute = "/Home";
 }

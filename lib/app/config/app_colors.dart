@@ -55,6 +55,25 @@ class AppColor {
   static const Color gray300 = Color(0xFFD2D5DA);
   static const Color gray400 = Color(0xFF9CA3AF);
   static const Color gray500 = Color(0xFF6D7280);
+
+  // Home Screen Colors from Figma
+  static const Color homePrimary = Color(0xFF0071A4);
+  static const Color homeHeading = Color(0xFF202020);
+  static const Color homeBackground = Color(0xFFF3F3F3);
+  static const Color homeSearchBg = Color(0xFFF6F6F6);
+  static const Color homeYellow1 = Color(0xFFF5AA0D);
+  static const Color homeYellow2 = Color(0xFFF1B11C);
+  static const Color homeYellow3 = Color(0xFFFFD471);
+  static const Color homeSuccessGreen = Color(0xFF249B3E);
+  static const Color homeStarYellow = Color(0xFFECA61B);
+  static const Color homeTextGray = Color(0xFF666666);
+  static const Color homeBadgeRed = Color(0xFFFF2D2D);
+  static const Color homeBannerRed = Color(0xFFFF0000);
+  static const Color homeLightBlue = Color(0xFFF3F9FB);
+  static const Color homeBlue = Color(0xFF0042E0);
+  static const Color homeBottomNavBg = Color(0xFF181725);
+  static const Color homeBottomNavActive = Color(0xFF0071A4);
+  static const Color homeBottomNavInactive = Color(0xFF181725);
 }
 
 class HexColor extends Color {

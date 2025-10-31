@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safeonvendor_flutter_repo/presentation/pages.dart';
 import 'widgets/onboarding_footer.dart';
-import 'widgets/pager_indicator.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -95,7 +94,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   width: 148,
                   height: 5,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.3),
+                    color: Colors.white.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(3),
                   ),
                 ),
@@ -128,7 +127,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 end: Alignment.topCenter,
                 colors: [
                   const Color(0xFF0071A4),
-                  const Color(0xFF061023).withOpacity(0.0),
+                  const Color(0xFF061023).withValues(alpha: 0.0),
                 ],
                 stops: const [0.16, 1.0],
               ),

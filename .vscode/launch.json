@@ -2,52 +2,36 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "SafeOn Vendor - iPhone 16 Pro",
+      "name": "SafeOn Vendor - Development (Android Device)",
       "request": "launch",
       "type": "dart",
       "program": "lib/main_dev.dart",
-      "args": ["-d", "784B1A0C-6AB6-4214-A5A0-0B3016560B15"],
-      "deviceId": "784B1A0C-6AB6-4214-A5A0-0B3016560B15"
+      "args": ["-d", "RZCX91CZX9A"],
+      "deviceId": "RZCX91CZX9A"
     },
     {
-      "name": "SafeOn Vendor - iPhone 16 Pro Max",
+      "name": "SafeOn Vendor - Development (Windows Desktop)",
       "request": "launch",
       "type": "dart",
       "program": "lib/main_dev.dart",
-      "args": ["-d", "1C43FCFA-2675-4A83-AB3A-15024192121A"],
-      "deviceId": "1C43FCFA-2675-4A83-AB3A-15024192121A"
+      "args": ["-d", "windows"],
+      "deviceId": "windows"
     },
     {
-      "name": "SafeOn Vendor - Development iOS (main_dev.dart) - iPhone 16 Pro",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main_dev.dart",
-      "args": ["-d", "784B1A0C-6AB6-4214-A5A0-0B3016560B15"],
-      "deviceId": "784B1A0C-6AB6-4214-A5A0-0B3016560B15"
-    },
-    {
-      "name": "SafeOn Vendor - Production iOS (main_prod.dart) - iPhone 16 Pro",
+      "name": "SafeOn Vendor - Production (Android Device)",
       "request": "launch",
       "type": "dart",
       "program": "lib/main_prod.dart",
-      "args": ["-d", "784B1A0C-6AB6-4214-A5A0-0B3016560B15"],
-      "deviceId": "784B1A0C-6AB6-4214-A5A0-0B3016560B15"
+      "args": ["-d", "RZCX91CZX9A"],
+      "deviceId": "RZCX91CZX9A"
     },
     {
-      "name": "SafeOn Vendor - Debug Mode - iPhone 16 Pro",
+      "name": "SafeOn Vendor - Production (Windows Desktop)",
       "request": "launch",
       "type": "dart",
-      "program": "lib/main_dev.dart",
-      "args": ["--debug", "-d", "784B1A0C-6AB6-4214-A5A0-0B3016560B15"],
-      "deviceId": "784B1A0C-6AB6-4214-A5A0-0B3016560B15"
-    },
-    {
-      "name": "SafeOn Vendor - macOS",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main_dev.dart",
-      "args": ["-d", "macos"],
-      "deviceId": "macos"
+      "program": "lib/main_prod.dart",
+      "args": ["-d", "windows"],
+      "deviceId": "windows"
     },
     {
       "name": "SafeOn Vendor - Chrome Web",
@@ -56,6 +40,14 @@
       "program": "lib/main_dev.dart",
       "args": ["-d", "chrome"],
       "deviceId": "chrome"
+    },
+    {
+      "name": "SafeOn Vendor - Edge Web",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_dev.dart",
+      "args": ["-d", "edge"],
+      "deviceId": "edge"
     }
   ]
 }

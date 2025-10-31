@@ -31,12 +31,12 @@ class PagerIndicator extends StatelessWidget {
       decoration: BoxDecoration(
         color: isActive
             ? const Color(0xFFFAFBFC)
-            : const Color(0xFFFAFBFC).withOpacity(0.5),
+            : const Color(0xFFFAFBFC).withValues(alpha: 0.5),
         shape: BoxShape.circle,
         boxShadow: isActive
             ? [
                 BoxShadow(
-                  color: Colors.white.withOpacity(0.4),
+                  color: Colors.white.withValues(alpha: 0.4),
                   blurRadius: 6,
                   spreadRadius: 0.5,
                   offset: const Offset(0, 0),

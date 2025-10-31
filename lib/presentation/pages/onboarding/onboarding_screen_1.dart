@@ -27,7 +27,7 @@ class OnboardingScreen1 extends StatelessWidget {
                   end: Alignment.topCenter,
                   colors: [
                     const Color(0xFF0071A4),
-                    const Color(0xFF061023).withOpacity(0.0),
+                    const Color(0xFF061023).withValues(alpha: 0.0),
                   ],
                   stops: const [0.16, 1.0],
                 ),
@@ -93,7 +93,7 @@ class OnboardingScreen1 extends StatelessWidget {
                   width: 148,
                   height: 5,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.3),
+                    color: Colors.white.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(3),
                   ),
                 ),

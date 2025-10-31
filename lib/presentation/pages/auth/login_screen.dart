@@ -20,7 +20,7 @@ class LoginScreen extends GetView<AuthController> {
             end: Alignment.bottomCenter,
             colors: [
               AppColor.authPrimaryAlt,
-              AppColor.authPrimaryAlt.withOpacity(0.8),
+              AppColor.authPrimaryAlt.withValues(alpha: 0.8),
             ],
           ),
         ),
@@ -85,7 +85,7 @@ class LoginScreen extends GetView<AuthController> {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 20,
             offset: const Offset(0, -5),
           ),
@@ -175,14 +175,17 @@ class LoginScreen extends GetView<AuthController> {
       height: 56,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [AppColor.authPrimary, AppColor.authPrimary.withOpacity(0.8)],
+          colors: [
+            AppColor.authPrimary,
+            AppColor.authPrimary.withValues(alpha: 0.8),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: AppColor.authPrimary.withOpacity(0.3),
+            color: AppColor.authPrimary.withValues(alpha: 0.3),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -192,6 +195,7 @@ class LoginScreen extends GetView<AuthController> {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
+            Get.toNamed(Routes.mainScreenRoute);
             // Handle continue with haptic feedback
             // HapticFeedback.lightImpact();
           },
@@ -217,7 +221,7 @@ class LoginScreen extends GetView<AuthController> {
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: AppColor.authPrimary.withOpacity(0.3),
+          color: AppColor.authPrimary.withValues(alpha: 0.3),
           width: 1.5,
         ),
       ),
@@ -257,7 +261,7 @@ class LoginScreen extends GetView<AuthController> {
                     gradient: LinearGradient(
                       colors: [
                         Colors.transparent,
-                        AppColor.authPrimary.withOpacity(0.3),
+                        AppColor.authPrimary.withValues(alpha: 0.3),
                         Colors.transparent,
                       ],
                     ),
@@ -283,7 +287,7 @@ class LoginScreen extends GetView<AuthController> {
                     gradient: LinearGradient(
                       colors: [
                         Colors.transparent,
-                        AppColor.authPrimary.withOpacity(0.3),
+                        AppColor.authPrimary.withValues(alpha: 0.3),
                         Colors.transparent,
                       ],
                     ),
@@ -311,7 +315,7 @@ class LoginScreen extends GetView<AuthController> {
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Colors.black.withValues(alpha: 0.05),
                     blurRadius: 10,
                     offset: const Offset(0, 2),
                   ),
