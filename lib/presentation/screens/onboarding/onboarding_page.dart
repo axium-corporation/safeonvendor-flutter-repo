@@ -29,7 +29,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
     } else {
       // Navigate to login or home screen
       // Get.offNamed('/login');
-      print('Navigate to login screen');
+      // print('Navigate to login screen');
     }
   }
 
