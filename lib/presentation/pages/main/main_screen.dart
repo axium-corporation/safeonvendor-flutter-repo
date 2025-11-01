@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safeonvendor_flutter_repo/presentation/controllers/main_controller.dart';
+import 'package:safeonvendor_flutter_repo/presentation/pages/cart/cart_screen.dart';
+import 'package:safeonvendor_flutter_repo/presentation/pages/categories/categories_screen.dart';
 import 'package:safeonvendor_flutter_repo/presentation/pages/home/home_screen.dart';
+import 'package:safeonvendor_flutter_repo/presentation/pages/profile/profile_screen.dart';
 import 'package:safeonvendor_flutter_repo/presentation/widgets/custom_bottom_navigation.dart';
 
 class MainScreen extends GetView<MainController> {
@@ -16,18 +19,18 @@ class MainScreen extends GetView<MainController> {
           children: [
             // Home Tab
             const HomeScreen(),
-            
+
             // Categories Tab
-            _buildPlaceholderScreen('Categories', Icons.category),
-            
+            const CategoriesScreen(),
+
             // Explore Tab
             _buildPlaceholderScreen('Explore', Icons.explore),
-            
-            // Account Tab
-            _buildPlaceholderScreen('Account', Icons.person),
-            
+
+            // Account Tab (Profile)
+            const ProfileScreen(),
+
             // Cart Tab
-            _buildPlaceholderScreen('Cart', Icons.shopping_cart),
+            const CartScreen(),
           ],
         );
       }),
@@ -44,10 +47,7 @@ class MainScreen extends GetView<MainController> {
           const SizedBox(height: 20),
           Text(
             '$title Screen',
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
           const Text('Coming Soon!'),
@@ -56,4 +56,3 @@ class MainScreen extends GetView<MainController> {
     );
   }
 }
-
