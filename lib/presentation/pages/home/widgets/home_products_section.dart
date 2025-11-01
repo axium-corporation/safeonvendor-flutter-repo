@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safeonvendor_flutter_repo/presentation/controllers/home/home_controller.dart';
+import 'package:safeonvendor_flutter_repo/presentation/pages.dart';
 import 'package:safeonvendor_flutter_repo/presentation/widgets/common_product_card.dart';
 import 'package:safeonvendor_flutter_repo/presentation/widgets/common_section_header.dart';
 
@@ -49,7 +50,7 @@ class HomeProductsSection extends GetView<HomeController> {
                 rating: (product['rating'] ?? 0.0).toDouble(),
                 showDiscount: product['showDiscount'] ?? true,
                 onTap: () {
-                  // Handle product tap
+                  Get.toNamed(Routes.productDetailsRoute);
                 },
                 onFavoriteTap: () {
                   // Handle favorite tap
