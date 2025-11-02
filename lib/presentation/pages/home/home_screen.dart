@@ -23,46 +23,117 @@ class HomeScreen extends GetView<HomeController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header with Logo and Search
-              const HomeScreenHeader(),
+              // Header with Logo and Search - Animated with 200ms delay
+              TweenAnimationBuilder<double>(
+                duration: const Duration(milliseconds: 400),
+                tween: Tween(begin: 0.0, end: 1.0),
+                curve: Curves.easeOut,
+                builder: (context, value, child) {
+                  return Transform.translate(
+                    offset: Offset(0, 20 * (1 - value)),
+                    child: Opacity(
+                      opacity: value,
+                      child: const HomeScreenHeader(),
+                    ),
+                  );
+                },
+              ),
 
-              // Featured Banner
+              // Featured Banner - Animated with 300ms delay
               const SizedBox(height: 20),
-              const HomeFeaturedBanner(),
+              TweenAnimationBuilder<double>(
+                duration: const Duration(milliseconds: 500),
+                tween: Tween(begin: 0.0, end: 1.0),
+                curve: Curves.easeOutCubic,
+                builder: (context, value, child) {
+                  return Transform.scale(
+                    scale: 0.95 + (0.05 * value),
+                    child: Opacity(
+                      opacity: value,
+                      child: const HomeFeaturedBanner(),
+                    ),
+                  );
+                },
+              ),
 
-              // Categories Section
+              // Categories Section - Animated with 400ms delay
               const SizedBox(height: 30),
-              const HomeCategoriesSection(),
-
-              // Top Products Section
-              const SizedBox(height: 29),
-              const HomeTopProductsSection(),
-
-              // New Products Section
-              const SizedBox(height: 29),
-              // Obx(() {
-              // return
-              HomeProductsSection(
-                title: 'New Products',
-                products: controller.newProducts,
-                onSeeAllTap: () {
-                  // Navigate to all new products
+              TweenAnimationBuilder<double>(
+                duration: const Duration(milliseconds: 500),
+                tween: Tween(begin: 0.0, end: 1.0),
+                curve: Curves.easeOut,
+                builder: (context, value, child) {
+                  return Opacity(
+                    opacity: value,
+                    child: const HomeCategoriesSection(),
+                  );
                 },
               ),
-              // }),
 
-              // Popular Products Section
+              // Top Products Section - Animated with 500ms delay
+              const SizedBox(height: 29),
+              TweenAnimationBuilder<double>(
+                duration: const Duration(milliseconds: 500),
+                tween: Tween(begin: 0.0, end: 1.0),
+                curve: Curves.easeOut,
+                builder: (context, value, child) {
+                  return Transform.translate(
+                    offset: Offset(30 * (1 - value), 0),
+                    child: Opacity(
+                      opacity: value,
+                      child: const HomeTopProductsSection(),
+                    ),
+                  );
+                },
+              ),
+
+              // New Products Section - Animated with 600ms delay
+              const SizedBox(height: 29),
+              Obx(() {
+                // Access observable directly - .length ensures GetX tracks it
+                controller.newProducts.length; // Create dependency
+                return TweenAnimationBuilder<double>(
+                  duration: const Duration(milliseconds: 500),
+                  tween: Tween(begin: 0.0, end: 1.0),
+                  curve: Curves.easeOut,
+                  builder: (context, value, child) {
+                    return Opacity(
+                      opacity: value,
+                      child: HomeProductsSection(
+                        title: 'New Products',
+                        products: controller.newProducts,
+                        onSeeAllTap: () {
+                          // Navigate to all new products
+                        },
+                      ),
+                    );
+                  },
+                );
+              }),
+
+              // Popular Products Section - Animated with 650ms delay
               const SizedBox(height: 20),
-              // Obx(() {
-              // return
-              HomeProductsSection(
-                title: 'Popular Products',
-                products: controller.popularProducts,
-                onSeeAllTap: () {
-                  // Navigate to all popular products
-                },
-              ),
-              // }),
+              Obx(() {
+                // Access observable directly - .length ensures GetX tracks it
+                controller.popularProducts.length; // Create dependency
+                return TweenAnimationBuilder<double>(
+                  duration: const Duration(milliseconds: 500),
+                  tween: Tween(begin: 0.0, end: 1.0),
+                  curve: Curves.easeOut,
+                  builder: (context, value, child) {
+                    return Opacity(
+                      opacity: value,
+                      child: HomeProductsSection(
+                        title: 'Popular Products',
+                        products: controller.popularProducts,
+                        onSeeAllTap: () {
+                          // Navigate to all popular products
+                        },
+                      ),
+                    );
+                  },
+                );
+              }),
 
               // Bottom Spacing for Navigation Bar
               const SizedBox(height: 120),

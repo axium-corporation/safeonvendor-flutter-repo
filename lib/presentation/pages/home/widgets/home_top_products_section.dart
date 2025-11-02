@@ -22,9 +22,9 @@ class HomeTopProductsSection extends GetView<HomeController> {
           ),
         ),
         const SizedBox(height: 29),
-        // Horizontal Scrollable List
+        // Horizontal Scrollable List with slide-in animations
         SizedBox(
-          height: 69,
+          height: 75,
           child: Obx(() {
             return ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -33,11 +33,28 @@ class HomeTopProductsSection extends GetView<HomeController> {
               separatorBuilder: (context, index) => const SizedBox(width: 9),
               itemBuilder: (context, index) {
                 final product = controller.topProducts[index];
-                return _TopProductCard(
-                  title: product['title'] ?? '',
-                  imageUrl: product['imageUrl'] ?? '',
-                  onTap: () {
-                    // Handle product tap
+                // Staggered animation for each product card
+                return TweenAnimationBuilder<double>(
+                  duration: Duration(milliseconds: 400 + (index * 50)),
+                  tween: Tween(begin: 0.0, end: 1.0),
+                  curve: Curves.easeOut,
+                  builder: (context, value, child) {
+                    return Transform.translate(
+                      offset: Offset(30 * (1 - value), 0),
+                      child: Transform.scale(
+                        scale: 0.85 + (0.15 * value),
+                        child: Opacity(
+                          opacity: value,
+                          child: _TopProductCard(
+                            title: product['title'] ?? '',
+                            imageUrl: product['imageUrl'] ?? '',
+                            onTap: () {
+                              // Handle product tap
+                            },
+                          ),
+                        ),
+                      ),
+                    );
                   },
                 );
               },
@@ -66,7 +83,7 @@ class _TopProductCard extends StatelessWidget {
       onTap: onTap,
       child: Column(
         children: [
-          // Circle Container with Shadow
+          // Circle Container with Enhanced Shadow
           Container(
             width: 60,
             height: 60,
@@ -75,9 +92,14 @@ class _TopProductCard extends StatelessWidget {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.16),
-                  blurRadius: 10,
-                  offset: const Offset(0, 5),
+                  color: Colors.black.withOpacity(0.12),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
+                ),
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.08),
+                  blurRadius: 6,
+                  offset: const Offset(0, 2),
                 ),
               ],
             ),
@@ -106,10 +128,11 @@ class _TopProductCard extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 9),
+          const SizedBox(height: 2),
           // Title
           SizedBox(
             width: 60,
+            height: 13,
             child: Text(
               title,
               textAlign: TextAlign.center,
@@ -117,7 +140,7 @@ class _TopProductCard extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: AppTextStyles.kRalewayTextStyle13with500(
                 AppColor.homeHeading,
-              ),
+              ).copyWith(fontSize: 11),
             ),
           ),
         ],

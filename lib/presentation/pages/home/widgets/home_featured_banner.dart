@@ -13,13 +13,25 @@ class HomeFeaturedBanner extends GetView<HomeController> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Stack(
         children: [
-          // Banner Container
+          // Banner Container with enhanced shadows
           Container(
             height: 130,
             width: double.infinity,
             decoration: BoxDecoration(
               color: AppColor.homeBannerRed,
-              borderRadius: BorderRadius.circular(9),
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColor.homeBannerRed.withOpacity(0.3),
+                  blurRadius: 15,
+                  offset: const Offset(0, 5),
+                ),
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 10,
+                  offset: const Offset(0, 2),
+                ),
+              ],
             ),
             child: Stack(
               children: [
@@ -117,7 +129,7 @@ class HomeFeaturedBanner extends GetView<HomeController> {
               ],
             ),
           ),
-          // Carousel Indicators
+          // Carousel Indicators with smooth animations
           Positioned(
             bottom: 10,
             left: 0,
@@ -126,17 +138,27 @@ class HomeFeaturedBanner extends GetView<HomeController> {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(5, (index) {
-                  return Container(
-                    width: index == controller.currentBannerIndex.value
-                        ? 34
-                        : 8.5,
+                  final isActive = index == controller.currentBannerIndex.value;
+                  return AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    width: isActive ? 34 : 8.5,
                     height: 8,
                     margin: const EdgeInsets.symmetric(horizontal: 4.25),
                     decoration: BoxDecoration(
-                      color: index == controller.currentBannerIndex.value
+                      color: isActive
                           ? AppColor.pureWhite
-                          : AppColor.homeBlue,
+                          : AppColor.homeBlue.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(4),
+                      boxShadow: isActive
+                          ? [
+                              BoxShadow(
+                                color: Colors.white.withOpacity(0.5),
+                                blurRadius: 4,
+                                offset: const Offset(0, 1),
+                              ),
+                            ]
+                          : null,
                     ),
                   );
                 }),
