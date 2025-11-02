@@ -20,7 +20,7 @@ class CategoriesController extends GetxController {
       'categoryName': 'Smoke Detectors',
       'products': [
         {
-          'imageUrl': 'assets/images/products/smoke_detector_1.png',
+          'imageUrl': 'assets/images/categories/fire_detection.png',
           'productName': 'Ionization Smoke Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -30,7 +30,7 @@ class CategoriesController extends GetxController {
           'showDiscount': false,
         },
         {
-          'imageUrl': 'assets/images/products/smoke_detector_2.png',
+          'imageUrl': 'assets/images/products/fire_nozzle.png',
           'productName': 'Photoelectric Smoke Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -40,7 +40,7 @@ class CategoriesController extends GetxController {
           'showDiscount': false,
         },
         {
-          'imageUrl': 'assets/images/products/smoke_detector_3.png',
+          'imageUrl': 'assets/images/categories/fire_suppression.png',
           'productName': 'Dual Sensor Smoke Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -55,7 +55,7 @@ class CategoriesController extends GetxController {
       'categoryName': 'Heat Detectors',
       'products': [
         {
-          'imageUrl': 'assets/images/products/heat_detector_1.png',
+          'imageUrl': 'assets/images/products/fire_nozzle.png',
           'productName': 'Standard Fire Hoses',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -65,7 +65,7 @@ class CategoriesController extends GetxController {
           'showDiscount': true,
         },
         {
-          'imageUrl': 'assets/images/products/heat_detector_2.png',
+          'imageUrl': 'assets/images/categories/fire_protection.png',
           'productName': 'Lay-Flat Fire Hoses',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -75,7 +75,7 @@ class CategoriesController extends GetxController {
           'showDiscount': true,
         },
         {
-          'imageUrl': 'assets/images/products/heat_detector_3.png',
+          'imageUrl': 'assets/images/categories/fire_escape.png',
           'productName': 'Lay-Flat Fire Hoses',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -90,7 +90,7 @@ class CategoriesController extends GetxController {
       'categoryName': 'Flame Detectors',
       'products': [
         {
-          'imageUrl': 'assets/images/products/flame_detector_1.png',
+          'imageUrl': 'assets/images/products/safety_jacket_1.png',
           'productName': 'Infrared Flame Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -100,7 +100,7 @@ class CategoriesController extends GetxController {
           'showDiscount': false,
         },
         {
-          'imageUrl': 'assets/images/products/flame_detector_2.png',
+          'imageUrl': 'assets/images/products/safety_jacket_2.png',
           'productName': 'Ultraviolet Flame Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -110,7 +110,7 @@ class CategoriesController extends GetxController {
           'showDiscount': false,
         },
         {
-          'imageUrl': 'assets/images/products/flame_detector_3.png',
+          'imageUrl': 'assets/images/categories/fire_detection.png',
           'productName': 'Lay-Flat Fire Hoses',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -125,7 +125,7 @@ class CategoriesController extends GetxController {
       'categoryName': 'Residential Ionization Smoke Detectors',
       'products': [
         {
-          'imageUrl': 'assets/images/products/residential_smoke_1.png',
+          'imageUrl': 'assets/images/products/fire_nozzle.png',
           'productName': 'First Alert 9120B Hardwired Smoke Detector',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -135,7 +135,7 @@ class CategoriesController extends GetxController {
           'showDiscount': true,
         },
         {
-          'imageUrl': 'assets/images/products/residential_smoke_2.png',
+          'imageUrl': 'assets/images/categories/fire_detection.png',
           'productName': 'Kidde i12060 Ionization Smoke Alarm',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -150,7 +150,7 @@ class CategoriesController extends GetxController {
       'categoryName': 'Ionization Smoke Detectors',
       'products': [
         {
-          'imageUrl': 'assets/images/products/ionization_1.png',
+          'imageUrl': 'assets/images/products/safety_jacket_1.png',
           'productName': 'Residential Ionization Smoke Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -160,7 +160,7 @@ class CategoriesController extends GetxController {
           'showDiscount': false,
         },
         {
-          'imageUrl': 'assets/images/products/ionization_2.png',
+          'imageUrl': 'assets/images/products/safety_jacket_2.png',
           'productName': 'Commercial Ionization Smoke Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -170,7 +170,7 @@ class CategoriesController extends GetxController {
           'showDiscount': false,
         },
         {
-          'imageUrl': 'assets/images/products/ionization_3.png',
+          'imageUrl': 'assets/images/categories/fire_suppression.png',
           'productName': 'Residential Ionization Smoke Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -185,7 +185,7 @@ class CategoriesController extends GetxController {
       'categoryName': 'Photoelectric Smoke Detectors',
       'products': [
         {
-          'imageUrl': 'assets/images/products/photoelectric_1.png',
+          'imageUrl': 'assets/images/categories/fire_protection.png',
           'productName': 'Residential Photoelectric Smoke Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -195,7 +195,7 @@ class CategoriesController extends GetxController {
           'showDiscount': false,
         },
         {
-          'imageUrl': 'assets/images/products/photoelectric_2.png',
+          'imageUrl': 'assets/images/products/fire_nozzle.png',
           'productName': 'Commercial Photoelectric Smoke Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -205,7 +205,7 @@ class CategoriesController extends GetxController {
           'showDiscount': false,
         },
         {
-          'imageUrl': 'assets/images/products/photoelectric_3.png',
+          'imageUrl': 'assets/images/categories/fire_escape.png',
           'productName': 'Residential Ionization Smoke Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -220,7 +220,7 @@ class CategoriesController extends GetxController {
       'categoryName': 'Aspirating Smoke Detectors',
       'products': [
         {
-          'imageUrl': 'assets/images/products/aspirating_1.png',
+          'imageUrl': 'assets/images/categories/fire_detection.png',
           'productName': 'Point-Type Aspirating Smoke Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -230,7 +230,7 @@ class CategoriesController extends GetxController {
           'showDiscount': false,
         },
         {
-          'imageUrl': 'assets/images/products/aspirating_2.png',
+          'imageUrl': 'assets/images/products/safety_jacket_1.png',
           'productName': 'Addressable Aspirating Smoke Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -240,7 +240,7 @@ class CategoriesController extends GetxController {
           'showDiscount': false,
         },
         {
-          'imageUrl': 'assets/images/products/aspirating_3.png',
+          'imageUrl': 'assets/images/products/safety_jacket_2.png',
           'productName': 'Hardwired Dual Sensor Smoke Detectors',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -255,7 +255,7 @@ class CategoriesController extends GetxController {
       'categoryName': 'Additional Products',
       'products': [
         {
-          'imageUrl': 'assets/images/products/additional_1.png',
+          'imageUrl': 'assets/images/categories/fire_suppression.png',
           'productName': 'Kidde i9040 Battery-Operated Smoke Alarm',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -265,7 +265,7 @@ class CategoriesController extends GetxController {
           'showDiscount': true,
         },
         {
-          'imageUrl': 'assets/images/products/additional_2.png',
+          'imageUrl': 'assets/images/products/fire_nozzle.png',
           'productName': 'Firex i4618AC Ionization Smoke Alarm',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -280,7 +280,7 @@ class CategoriesController extends GetxController {
       'categoryName': 'More Products',
       'products': [
         {
-          'imageUrl': 'assets/images/products/more_1.png',
+          'imageUrl': 'assets/images/categories/fire_protection.png',
           'productName': 'BRK 3120B Hardwired Smoke Detector',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',
@@ -290,7 +290,7 @@ class CategoriesController extends GetxController {
           'showDiscount': true,
         },
         {
-          'imageUrl': 'assets/images/products/more_2.png',
+          'imageUrl': 'assets/images/categories/fire_escape.png',
           'productName': 'First Alert SA303CN3 Ionization Smoke Alarm',
           'currentPrice': '₹1300',
           'originalPrice': '₹2500',

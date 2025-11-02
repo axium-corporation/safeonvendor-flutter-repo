@@ -5,6 +5,40 @@ class HomeController extends GetxController {
   final currentBannerIndex = 0.obs;
   final isLoading = false.obs;
 
+  // Banner Data
+  final banners = <Map<String, dynamic>>[
+    {
+      'title': 'Fire Fighting',
+      'subtitle': 'Up to 70%',
+      'buttonText': 'Pipe Nozzle',
+      'imageUrl': 'assets/images/fire_nozzle.png',
+    },
+    {
+      'title': 'Safety Equipment',
+      'subtitle': 'Up to 50%',
+      'buttonText': 'Safety Jackets',
+      'imageUrl': 'assets/images/products/safety_jacket_1.png',
+    },
+    {
+      'title': 'Fire Protection',
+      'subtitle': 'Up to 60%',
+      'buttonText': 'Fire Extinguishers',
+      'imageUrl': 'assets/images/categories/fire_suppression.png',
+    },
+    {
+      'title': 'Emergency Gear',
+      'subtitle': 'Up to 45%',
+      'buttonText': 'Emergency Kits',
+      'imageUrl': 'assets/images/categories/fire_detection.png',
+    },
+    {
+      'title': 'Best Deals',
+      'subtitle': 'Up to 55%',
+      'buttonText': 'Shop Now',
+      'imageUrl': 'assets/images/fire_nozzle.png',
+    },
+  ].obs;
+
   // Categories Data
   final categories = <Map<String, dynamic>>[
     {
@@ -112,7 +146,7 @@ class HomeController extends GetxController {
   // Auto scroll banner
   void _startBannerAutoScroll() {
     Future.delayed(const Duration(seconds: 3), () {
-      if (currentBannerIndex.value < 4) {
+      if (currentBannerIndex.value < banners.length - 1) {
         currentBannerIndex.value++;
       } else {
         currentBannerIndex.value = 0;

@@ -1,8 +1,8 @@
 import "package:get/get.dart";
 
 class MainController extends GetxController {
-  RxInt selectedIndex = 0.obs;
-  final currentIndex = 0.obs;
+  RxInt selectedIndex = 2.obs;
+  final currentIndex = 2.obs;
 
   void changeTab(int index) {
     currentIndex.value = index;

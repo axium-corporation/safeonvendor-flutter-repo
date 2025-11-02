@@ -21,14 +21,20 @@ class CommonSectionHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            title,
-            style: AppTextStyles.kInterTextStyle21with700(AppColor.homeHeading),
+          Expanded(
+            child: Text(
+              title,
+              style: AppTextStyles.kInterTextStyle21with700(AppColor.homeHeading),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
-          if (showSeeAll)
+          if (showSeeAll) ...[
+            const SizedBox(width: 12),
             GestureDetector(
               onTap: onSeeAllTap,
               child: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     'See All',
@@ -60,6 +66,7 @@ class CommonSectionHeader extends StatelessWidget {
                 ],
               ),
             ),
+          ],
         ],
       ),
     );

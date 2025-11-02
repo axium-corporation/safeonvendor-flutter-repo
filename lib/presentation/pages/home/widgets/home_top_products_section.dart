@@ -21,16 +21,16 @@ class HomeTopProductsSection extends GetView<HomeController> {
             ),
           ),
         ),
-        const SizedBox(height: 29),
+        const SizedBox(height: 24),
         // Horizontal Scrollable List with slide-in animations
         SizedBox(
-          height: 75,
+          height: 85,
           child: Obx(() {
             return ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               scrollDirection: Axis.horizontal,
               itemCount: controller.topProducts.length,
-              separatorBuilder: (context, index) => const SizedBox(width: 9),
+              separatorBuilder: (context, index) => const SizedBox(width: 20),
               itemBuilder: (context, index) {
                 final product = controller.topProducts[index];
                 // Staggered animation for each product card
@@ -128,11 +128,10 @@ class _TopProductCard extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 2),
+          const SizedBox(height: 8),
           // Title
           SizedBox(
-            width: 60,
-            height: 13,
+            width: 70,
             child: Text(
               title,
               textAlign: TextAlign.center,
@@ -140,7 +139,10 @@ class _TopProductCard extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: AppTextStyles.kRalewayTextStyle13with500(
                 AppColor.homeHeading,
-              ).copyWith(fontSize: 11),
+              ).copyWith(
+                fontSize: 11,
+                height: 1.2,
+              ),
             ),
           ),
         ],

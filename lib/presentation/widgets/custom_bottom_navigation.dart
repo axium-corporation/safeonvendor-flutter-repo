@@ -38,8 +38,8 @@ class CustomBottomNavigation extends GetView<MainController> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _BottomNavItem(
-                  icon: Icons.home,
-                  label: 'Home',
+                  icon: Icons.explore_outlined,
+                  label: 'Explore',
                   isActive: controller.currentIndex.value == 0,
                   onTap: () => controller.changeTab(0),
                   hasNotification: false,
@@ -52,8 +52,8 @@ class CustomBottomNavigation extends GetView<MainController> {
                   hasNotification: false,
                 ),
                 _BottomNavItem(
-                  icon: Icons.explore_outlined,
-                  label: 'Explore',
+                  icon: Icons.home,
+                  label: 'Home',
                   isActive: controller.currentIndex.value == 2,
                   onTap: () => controller.changeTab(2),
                   hasNotification: false,

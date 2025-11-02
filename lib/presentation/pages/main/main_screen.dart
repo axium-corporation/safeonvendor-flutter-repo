@@ -17,14 +17,14 @@ class MainScreen extends GetView<MainController> {
         return IndexedStack(
           index: controller.currentIndex.value,
           children: [
-            // Home Tab
-            const HomeScreen(),
+            // Explore Tab
+            _buildPlaceholderScreen('Explore', Icons.explore),
 
             // Categories Tab
             const CategoriesScreen(),
 
-            // Explore Tab
-            _buildPlaceholderScreen('Explore', Icons.explore),
+            // Home Tab (Middle)
+            const HomeScreen(),
 
             // Account Tab (Profile)
             const ProfileScreen(),
