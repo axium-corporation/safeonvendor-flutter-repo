@@ -28,3 +28,6 @@ promt.md
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# VS Code launch configurations (may contain sensitive API keys)
+.vscode/launch.json
